@@ -1,0 +1,20 @@
+tomcat:
+    image: "tomcat:9.0"
+    ports:
+      - "8080:8080"
+    links:
+      - "mysql"
+    volumes:
+      - ./opencron:/usr/local/tomcat/webapps/ROOT
+
+mysql:
+    image: "mysql:5.6"
+    # 此处可自行开放3306
+    # ports:
+    #   - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    # 此处可自行设置初始密码
+    # 如果已有数据库文件请将此配置注释
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
